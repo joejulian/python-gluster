@@ -1,0 +1,10 @@
+This is a wrapper for the GlusterFS admin cli.
+
+Usage:
+
+import gluster
+status  = gluster.peer.status()         # retrieve peer status from all servers
+volumes = gluster.volume.info()         # retrieve all volumes on this server
+myvol1  = gluster.volume.info("myvol1") # retrieve the volume info for myvol1
+
+This could be used in conjunction with tastypie to build a RESTful API to glusterfs.
