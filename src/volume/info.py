@@ -15,7 +15,12 @@ If ``remotehost`` is set, volume info will be retrieved from the remote host.
             "volume", 
             "info",
             volname]
-    response = subprocess.check_output(program).split("\n")
+    try:
+        response = subprocess.check_output(program,stderr=subprocess.STDOUT).split("\n")
+    except subprocess.CalledProcessError,e:
+        print e.output
+        raise
+    
 
     for line in response:
         m = re.match("Volume Name: (.+)",line)
