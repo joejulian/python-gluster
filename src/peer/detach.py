@@ -11,7 +11,7 @@ If ``remotehost`` is set, detach will be run on remote host.
             "--remote-host=%s" % remotehost, 
             "peer", 
             "detach", 
-            host])
+            hostname])
     if response[-13:] == " is localhost":
         raise DetachWarning, response
     if response[-23:] == " is not part of cluster":
