@@ -47,9 +47,10 @@ def _status(remotehost="localhost",recursion=False):
                 if x not in peerstatus["host"].keys()][0]
         peerstatus["host"][remotehost] = {}
         peerstatus["host"][remotehost]["self"] = True
-        peerstatus["host"][remotehost]["uuid"] = _status(remotehost=peerstatus["host"].keys()[0],recursion=True)["host"][remotehost]["uuid"]
         peerstatus["host"][remotehost]["state"] = {}
         for host in peerstatus["host"].keys():
+            if host != remotehost:
+                peerstatus["host"][remotehost]["uuid"] = _status(remotehost=host,recursion=True)["host"][remotehost]["uuid"]
             remotestatus = _status(host,recursion=True)
             for statehost in remotestatus["host"]:
                 for state in remotestatus["host"][statehost]["state"]:
